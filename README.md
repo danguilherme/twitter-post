@@ -34,7 +34,7 @@ _Will be available on [Bower](http://bower.io/) soon._
 
 Attribute   	| Options	| Default   	| Description
 ---------------	| ---------	| -------------	| -----------
-`widget-id` 	| *Number*	| `null`    	| **[required]** The ID of the Twitter widget you wish to grab data from (check explanation on `master` branch on how to generate this number).
+`widget-id` 	| *Number*	| `null`    	| **[required]** The ID of the Twitter widget data will be retrieved from (follow [this guide](https://github.com/danguilherme/twitter-post/tree/master#how-to-create-a-widget-id) for how to generate this number).
 `max-tweets`	| *Number*	| `20`       	| The maximum number of tweets that must be shown. Must be a number between `1` and `20`.
 `no-link`     	| *Boolean*	| `false`    	| If this attribute is present, urls and hashtags will not be hyperlinked.
 `hide-user` 	| *Boolean*	| `false`   	| If this attribute is present, user photo / name for tweet will not be shown.
