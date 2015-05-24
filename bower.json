@@ -1,0 +1,26 @@
+{
+  "name": "twitter-post-element",
+  "version": "0.0.1",
+  "homepage": "https://github.com/danguilherme/twitter-post",
+  "authors": [
+    "Guilherme Ventura <guilhermeventura2@gmail.com>"
+  ],
+  "description": "Web component wrapper for Twitter tweets fetching",
+  "main": "twitter-post.html",
+  "keywords": [
+    "web-components",
+    "twitter",
+    "tweet"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "twitter-fetcher": "~13.0.0"
+  }
+}
