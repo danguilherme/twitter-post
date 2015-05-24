@@ -40,9 +40,11 @@ Attribute   	| Options	| Default   	| Description
 `hide-user` 	| *Boolean*	| `false`   	| If this attribute is present, user photo / name for tweet will not be shown.
 `hide-time` 	| *Boolean*	| `false`   	| If this attribute is present, time of tweet will not be shown.
 `hide-retweets`	| *Boolean*	| `false`    	| If this attribute is present, retweets will not be shown.
-`no-interaction`| *Boolean*	| `false`    	| If this attribute is present, buttons for reply, retweet and favourite will not be available.
-`images`    	| *Boolean*	| `false`    	| If this attribute is present, images from tweet will be loaded and shown.
+`hide-interaction`| *Boolean*	| `false`    	| If this attribute is present, buttons for reply, retweet and favourite will not be available.
+`images`        | *Boolean* | `false`       | If this attribute is present, images from tweet will be loaded and shown.
+`open-links-locally`| *Boolean* | `false`       | If this attribute is present, links' target will be the current tab.
 `lang`      	| *String*	| `"en"`    	| The code of the language that text like "posted on" or "time ago" must be shown.
+`no-permalink`        | *Boolean* | `false`       | If this attribute is present, permalink will not be added on tweet time. Note that removing tweet time (with `hide-time` attribute) the permalink will also be removed.
 
 
 ## Methods

@@ -1,0 +1,16 @@
+html {
+  font-family: Calibri,sans-serif;
+}
+
+body {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+body /deep/ a {
+  text-decoration: none;
+}
+
+twitter-post {
+  margin: 0 10%;
+}
