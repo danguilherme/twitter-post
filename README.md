@@ -44,7 +44,7 @@ Attribute   	| Options	| Default   	| Description
 `images`        | *Boolean* | `false`       | If this attribute is present, images from tweet will be loaded and shown.
 `open-links-locally`| *Boolean* | `false`       | If this attribute is present, links' target will be the current tab.
 `lang`      	| *String*	| `"en"`    	| The code of the language that text like "posted on" or "time ago" must be shown.
-`no-permalink`        | *Boolean* | `false`       | If this attribute is present, permalink will not be added on tweet time. Note that removing tweet time (with `hide-time` attribute) the permalink will also be removed.
+`no-permalink`        | *Boolean* | `false`       | If this attribute is present, permalink will not be added on tweet time. Note that removing tweet time with `hide-time` attribute will also remove the permalink.
 
 
 ## Methods

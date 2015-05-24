@@ -14,3 +14,12 @@ body /deep/ a {
 twitter-post {
   margin: 0 10%;
 }
+
+pre {
+  padding: 2em 1em;
+  max-width: 100%;
+  overflow: auto;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  white-space: pre-wrap;
+}
