@@ -28,7 +28,7 @@
       overflow: hidden;
     }
 
-    :host(:not([hide-user])) li {
+    :host(:not([hide-user]):not([no-link])) li {
       padding-left: 69px;
     }
 
@@ -49,6 +49,7 @@
 
     .user {
       position: relative;
+      margin: 0;
     }
 
     .user img {
@@ -74,7 +75,15 @@
     }
 
     .tweet {
-      margin: 3px 0 10px;
+      margin: 0;
+    }
+
+    :host(:not([hide-user]):not([hide-time])) .tweet {
+      margin-top: 3px;
+    }
+
+    :host([hide-user]:not([hide-time])) .tweet {
+      margin-top: 1em;
     }
 
     .timePosted,
@@ -107,6 +116,7 @@
     }
 
     .media {
+      margin-top: 10px;
       text-align: center;
     }
 
@@ -156,13 +166,13 @@
       // widget-id
       if (this.hasAttribute('widget-id'))
         this.setWidgetId(this.getAttribute('widget-id'));
-      else
-        this.setWidgetId(this.widgetId);
+
       // max-tweets
       if (this.hasAttribute('max-tweets'))
         this.setMaxTweets(this.getAttribute('max-tweets'));
       else
         this.setMaxTweets(this.maxTweets);
+
       // no-link
       this.setHideLinks(this.hasAttribute('no-link'));
       // hide-user
@@ -185,26 +195,34 @@
       // no-permalink
       this.setHidePermalink(this.hasAttribute('no-permalink'));
       
-      fetchTweets.call(this);
+      if (!!this.widgetId)
+        this.fetchTweets();
     };
 
     // Fires when an attribute was added, removed, or updated
     TwitterPostElementProto.attributeChangedCallback = function(attr, oldVal, newVal) {
-      // if (!!this['set' + attr2var(attr)]) this['set' + attr2var(attr)](newVal);
+      if (oldVal == newVal) return;
+
       switch(attr) {
         case 'widget-id': this.setWidgetId(newVal); break;
         case 'max-tweets': this.setMaxTweets(newVal); break;
-        case 'images': this.setShowImages(newVal); break;
-        case 'lang': this.language(newVal); break;
+        case 'no-link': this.setHideLinks(this.hasAttribute('no-link')); break;
+        case 'hide-user': this.setHideUser(this.hasAttribute('hide-user')); break;
+        case 'hide-time': this.setHideTime(this.hasAttribute('hide-time')); break;
+        case 'hide-retweets': this.setHideRetweets(this.hasAttribute('hide-retweets')); break;
+        case 'hide-interaction': this.setHideInteraction(this.hasAttribute('hide-interaction')); break;
+        case 'images': this.setShowImages(this.hasAttribute('images')); break;
+        case 'open-links-locally': this.setOpenLinksLocally(this.hasAttribute('open-links-locally')); break;
+        case 'lang': this.setLanguage(newVal); break;
+        case 'no-permalink': this.setHidePermalink(this.hasAttribute('no-permalink')); break;
       }
-
-      if (oldVal !== newVal)
-        fetchTweets.call(this);
     };
 
     // Create setters for all attributes
     TwitterPostElementProto.setWidgetId = function(val) {
+      if (!val) val = '';
       this.widgetId = val;
+      this.setAttribute('widget-id', this.widgetId);
     };
 
     TwitterPostElementProto.setMaxTweets = function(val) {
@@ -213,6 +231,7 @@
         n < 1 || n > 20)
         throw new Error("Maximum tweets property must be a number between 1 and 20.");
       this.maxTweets = n;
+      this.setAttribute('max-tweets', this.maxTweets);
     };
 
     TwitterPostElementProto.setHideLinks = function(val) {
@@ -280,6 +299,7 @@
 
     TwitterPostElementProto.setLanguage = function(val) {
       this.language = val;
+      this.setAttribute('lang', this.language);
     };
 
     TwitterPostElementProto.setHidePermalink = function(val) {
@@ -289,6 +309,30 @@
         this.removeAttribute('no-permalink');
       }
       this.noPermalink = this.hasAttribute('no-permalink');
+    };
+
+    // public methods
+    TwitterPostElementProto.fetchTweets = function() {
+      if (!this.widgetId) 
+        throw new Error("Widget ID must be set to fetch the tweets.");
+
+      setLoading.call(this, true);
+      
+      twitterFetcher.fetch({
+        id: this.widgetId,
+        maxTweets: this.maxTweets,
+        showImages: this.images,
+        enableLinks: !this.noLink,
+        showUser: !this.hideUser,
+        showTime: !this.hideTime,
+        showRetweet: !this.hideRetweets,
+        showInteraction: !this.hideInteraction,
+        showImages: this.images,
+        linksInNewWindow: !this.openLinksLocally,
+        lang: this.language,
+        showPermalinks: !this.noPermalink,
+        customCallback: handleTweets.bind(this)
+      });
     };
 
     // Registers <twitter-post> in the main document
@@ -320,26 +364,6 @@
       element.innerHTML = html;
 
       setLoading.call(this, false);
-    }
-
-    function fetchTweets() {
-        setLoading.call(this, true);
-        
-        twitterFetcher.fetch({
-          id: this.widgetId,
-          maxTweets: this.maxTweets,
-          showImages: this.images,
-          enableLinks: !this.noLink,
-          showUser: !this.hideUser,
-          showTime: !this.hideTime,
-          showRetweet: !this.hideRetweets,
-          showInteraction: !this.hideInteraction,
-          showImages: this.images,
-          linksInNewWindow: !this.openLinksLocally,
-          lang: this.language,
-          showPermalinks: !this.noPermalink,
-          customCallback: handleTweets.bind(this)
-        });
     }
 
     // helper methods

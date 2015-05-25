@@ -36,7 +36,7 @@ Attribute   	| Options	| Default   	| Description
 ---------------	| ---------	| -------------	| -----------
 `widget-id` 	| *Number*	| `null`    	| **[required]** The ID of the Twitter widget data will be retrieved from (follow [this guide](https://github.com/danguilherme/twitter-post/tree/master#how-to-create-a-widget-id) for how to generate this number).
 `max-tweets`	| *Number*	| `20`       	| The maximum number of tweets that must be shown. Must be a number between `1` and `20`.
-`no-link`     	| *Boolean*	| `false`    	| If this attribute is present, urls and hashtags will not be hyperlinked.
+`no-link`     	| *Boolean*	| `false`    	| If this attribute is present, urls and hashtags will not be hyperlinked and user avatar will not be shown.
 `hide-user` 	| *Boolean*	| `false`   	| If this attribute is present, user photo / name for tweet will not be shown.
 `hide-time` 	| *Boolean*	| `false`   	| If this attribute is present, time of tweet will not be shown.
 `hide-retweets`	| *Boolean*	| `false`    	| If this attribute is present, retweets will not be shown.

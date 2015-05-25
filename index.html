@@ -14,6 +14,44 @@
 <body>
   <h1>&lt;twitter-post&gt;</h1>
 
+  <h2>Dynamic</h2>
+  <form name="dynamicTweetConfig">
+    <label for="widgetId">Widget ID <a href="https://github.com/danguilherme/twitter-post/tree/master#how-to-create-a-widget-id" target="_BLANK">(?)</a>:</label>
+    <input type="text" name="widgetId" id="widgetId" value="432641412975185920">
+    
+    <label for="maxTweets">Number of tweets:</label>
+    <input type="range" name="maxTweets" id="maxTweets" min="1" max="20" value="1">
+    
+    <label for="noLink">Remove anchors:</label>
+    <input type="checkbox" name="noLink" id="noLink">
+    
+    <label for="hideUser">Hide user:</label>
+    <input type="checkbox" name="hideUser" id="hideUser">
+    
+    <label for="hideTime">Hide time:</label>
+    <input type="checkbox" name="hideTime" id="hideTime">
+    
+    <label for="hideRetweets">Hide retweets:</label>
+    <input type="checkbox" name="hideRetweets" id="hideRetweets">
+    
+    <label for="hideInteraction">Hide interaction (reply, retweet, favorite):</label>
+    <input type="checkbox" name="hideInteraction" id="hideInteraction">
+    
+    <label for="images">Show media:</label>
+    <input type="checkbox" name="images" id="images">
+    
+    <label for="openLinksLocally">Open links in current tab:</label>
+    <input type="checkbox" name="openLinksLocally" id="openLinksLocally">
+    
+    <label for="lang">Language (used only on tweet date and time):</label>
+    <input type="text" name="lang" id="lang">
+    
+    <label for="noPermalink">Remove permalink:</label>
+    <input type="checkbox" name="noPermalink" id="noPermalink">
+  </form>
+  <pre><code id="dynamic-twitter-post-code"></code></pre>
+  <twitter-post id="dynamic"></twitter-post>
+
   <h2><a href="https://twitter.com/danguilherme">@danguilherme</a></h2>
   <pre><code>&lt;twitter-post id="danguilherme" widget-id="432641412975185920" lang="pt" max-tweets="5"&gt;&lt;/twitter-post&gt;</code></pre>
   <twitter-post id="danguilherme" widget-id="432641412975185920" lang="pt" max-tweets="5"></twitter-post>
@@ -29,5 +67,7 @@
   <h2><a href="https://twitter.com/search?q=%23io15">#io15</a></h2>
   <pre><code>&lt;twitter-post id="Web_Components" widget-id="602382946671136768" max-tweets="10" images&gt;&lt;/twitter-post&gt;</code></pre>
   <twitter-post id="io15" widget-id="602382946671136768" max-tweets="10" images></twitter-post>
+
+  <script src="demo.js"></script>
 </body>
 </html>
