@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Calibri,sans-serif;
+}
+
+body {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 1em;
+}
+
+body /deep/ a {
+  text-decoration: none;
+}
+
+twitter-post {
+  margin: 0 10%;
+}
+
+pre {
+  padding: 2em 1em;
+  max-width: 100%;
+  overflow: auto;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  white-space: pre-wrap;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+form label {
+  width: 60%;
+  display: inline-block;
+  text-align: right;
+
+  margin-top: .5em;
+}
+
+form input {
+  width: 30%;
+  display: inline-block;
+  text-align: left;
+}
+
+#styled {
+  color: #fff;
+  background-color: #333;
+
+  border: 2px solid black;
+
+  -webkit-box-shadow: inset 0 0 10px black;
+  box-shadow: inset 0 0 10px black;
+
+  cursor: default;
+}
+
+#styled::shadow li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#styled::shadow a {
+  color: #fff;
+}
+
+#styled::shadow .timePosted {
+  top: 5px;
+}
+
+#styled::shadow .timePosted a {
+  text-decoration: underline;
+}
+
+#styled::shadow .tweet a {
+  font-weight: bold;
+}
+
+#styled::shadow .interact {
+  border: 1px #666 solid;
+  border-radius: 3px;
+  position: static;
+  margin-top: 10px;
+}
+
+#styled::shadow .interact a {
+  box-sizing: border-box;
+  
+  padding: 0 5px;
+  margin-left: 0;
+  width: 33.33333333333%;
+
+  opacity: 1;
+  background-color: #555;
+  border-right: 1px solid #666;
+  
+  text-align: center;
+
+  -webkit-transition: background-color .1s linear;
+  -o-transition: background-color .1s linear;
+  transition: background-color .1s linear;
+}
+
+#styled::shadow .interact a:last-child {
+  border-right: none;
+}
+
+#styled::shadow .interact a:hover,
+#styled::shadow .interact a:focus {
+  background-color: #666;
+}
+
+#styled::shadow .interact a::before {
+  content: '';
+
+  display: inline-block;
+  margin-right: 2px;
+}
+
+#styled::shadow .interact a.twitter_reply_icon::before {
+  content: "\21A9";
+}
+
+#styled::shadow .interact a.twitter_retweet_icon::before {
+  content: "\21BB";
+}
+
+#styled::shadow .interact a.twitter_fav_icon::before {
+  content: "\22C6";
+}

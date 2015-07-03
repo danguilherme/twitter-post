@@ -5,6 +5,9 @@
     :host {
       display: block;
       max-width: 100%;
+
+      border: 1px solid #e8e8e8;
+      border-radius: 5px;
     }
 
     progress {
@@ -16,16 +19,18 @@
       padding: 0;
 
       list-style: none;
+
+      border-radius: 5px;
     }
 
     li {
       position: relative;
       padding: 12px;
-      border-width: 0 1px 1px;
-      border-style: solid;
-      border-color: #e8e8e8;
 
       overflow: hidden;
+
+      border: solid #e8e8e8;
+      border-width: 1px 0 0;
     }
 
     :host(:not([hide-user]):not([no-link])) li {
@@ -37,14 +42,7 @@
     }
 
     li:first-child {
-      border-top-width: 1px;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-    }
-
-    li:last-child {
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
+      border-top-width: 0;
     }
 
     .user {
