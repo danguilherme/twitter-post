@@ -2,7 +2,7 @@
 
 ## Demo
 
-[Check it live!](http://danguilherme.github.io/twitter-post) _(Coming soon!)_
+[Check it live!](https://danguilherme.github.io/twitter-post)
 
 ## Install
 
