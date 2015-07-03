@@ -1,6 +1,5 @@
 {
   "name": "twitter-post-element",
-  "version": "0.0.1",
   "homepage": "https://github.com/danguilherme/twitter-post",
   "authors": [
     "Guilherme Ventura <guilhermeventura2@gmail.com>"
@@ -22,7 +21,16 @@
   ],
   "dependencies": {
     "twitter-fetcher": "~13.0.0",
-    "webcomponentsjs": "~0.7.1",
-    "twitter-post-element": "https://github.com/danguilherme/twitter-post.git#vanilla"
-  }
+    "webcomponentsjs": "~0.7.1"
+  },
+  "_release": "6c112f572d",
+  "_resolution": {
+    "type": "branch",
+    "branch": "vanilla",
+    "commit": "6c112f572deea923b9a51d9f41d0205607e8259f"
+  },
+  "_source": "https://github.com/danguilherme/twitter-post.git",
+  "_target": "vanilla",
+  "_originalSource": "https://github.com/danguilherme/twitter-post.git",
+  "_direct": true
 }
