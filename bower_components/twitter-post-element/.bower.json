@@ -23,14 +23,13 @@
     "twitter-fetcher": "~13.0.0",
     "webcomponentsjs": "~0.7.1"
   },
-  "_release": "6c112f572d",
+  "_release": "21b3addc65",
   "_resolution": {
     "type": "branch",
     "branch": "vanilla",
-    "commit": "6c112f572deea923b9a51d9f41d0205607e8259f"
+    "commit": "21b3addc654df7f345fb96c8bd45afbe78d3a873"
   },
   "_source": "https://github.com/danguilherme/twitter-post.git",
   "_target": "vanilla",
-  "_originalSource": "https://github.com/danguilherme/twitter-post.git",
-  "_direct": true
+  "_originalSource": "https://github.com/danguilherme/twitter-post.git"
 }
