@@ -96,12 +96,25 @@ form input {
   top: 5px;
 }
 
+#styled::shadow .tweet {
+  font-size: 1.5em;
+}
+
 #styled::shadow .timePosted a {
   text-decoration: underline;
 }
 
 #styled::shadow .tweet a {
   font-weight: bold;
+  word-break: break-all;
+
+  -webkit-transition: text-shadow .3s linear;
+  -o-transition: text-shadow .3s linear;
+  transition: text-shadow .3s linear;
+}
+
+#styled::shadow .tweet a:hover {
+  text-shadow: 0 0 3px white;
 }
 
 #styled::shadow .interact {
