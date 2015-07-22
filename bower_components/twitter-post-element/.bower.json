@@ -23,11 +23,11 @@
     "twitter-fetcher": "~13.0.0",
     "webcomponentsjs": "~0.7.1"
   },
-  "_release": "84b43d3e5a",
+  "_release": "98e3d21e79",
   "_resolution": {
     "type": "branch",
     "branch": "vanilla",
-    "commit": "84b43d3e5a3ae10d687c3fc95479ddd0fc0dc8bb"
+    "commit": "98e3d21e79b22410c72dde557adb1d80dbc8264a"
   },
   "_source": "https://github.com/danguilherme/twitter-post.git",
   "_target": "vanilla",
