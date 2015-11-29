@@ -198,7 +198,7 @@
         this.setLanguage(this.language);
       // no-permalink
       this.setHidePermalink(this.hasAttribute('no-permalink'));
-      
+
       if (!!this.widgetId)
         this.fetchTweets();
     };
@@ -317,11 +317,11 @@
 
     // public methods
     TwitterPostElementProto.fetchTweets = function() {
-      if (!this.widgetId) 
+      if (!this.widgetId)
         throw new Error("Widget ID must be set to fetch the tweets.");
 
       setLoading.call(this, true);
-      
+
       twitterFetcher.fetch({
         id: this.widgetId,
         maxTweets: this.maxTweets,
@@ -359,14 +359,23 @@
       var x = tweets.length;
       var n = 0;
       var element = this.target;
-      var html = '<ul>';
+      var tweetsList = document.createElement('ul');
+      var html = '';
+
       while(n < x) {
         html += '<li>' + tweets[n] + '</li>';
         n++;
       }
-      html += '</ul>';
-      element.innerHTML = html;
+      tweetsList.innerHTML = html;
 
+      // fix tweets images
+      var profilePictures = tweetsList.querySelectorAll('[data-src-1x]');
+      for (var i = 0; i < profilePictures.length; i++) {
+        profilePictures[i].setAttribute('src', profilePictures[i].getAttribute('data-src-1x'))
+      }
+
+      element.appendChild(tweetsList);
+      
       setLoading.call(this, false);
     }
 
