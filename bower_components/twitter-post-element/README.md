@@ -30,7 +30,8 @@ _Will be available on [Bower](http://bower.io/) soon._
     <twitter-post></twitter-post>
     ```
 
-## Options
+## API
+### Options
 
 Attribute   	| Options	| Default   	| Description
 ---------------	| ---------	| -------------	| -----------
@@ -47,17 +48,25 @@ Attribute   	| Options	| Default   	| Description
 `no-permalink`        | *Boolean* | `false`       | If this attribute is present, permalink will not be added on tweet time. Note that removing tweet time with `hide-time` attribute will also remove the permalink.
 
 
-## Methods
+### Methods
 
 Method      	| Parameters    	| Returns   	| Description
 ---------------	| -----------------	| -------------	| -----------
 
-## Events
+### Events
 
 Event       	| Description
 ---------------	| -----------
 `ontweetload`	| Triggers when tweet is loaded.
 `ontweetrender`	| Triggers when tweet is rendered.
+
+## Development
+### Serve
+```
+npm install -g polyserve
+polyserve
+```
+
 
 ## License
 
