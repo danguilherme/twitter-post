@@ -53,6 +53,7 @@
       height: 48px;
       background: #fff;
       border-radius: 4px;
+      background-color: #f8f8f8;
     }
 
     .user a {
@@ -322,8 +323,8 @@
     }
 
     function handleTweets(tweets) {
-      var x = tweets.length;
-      var n = 0;
+      var i = 0,
+        l = tweets.length;
       var element = this.contentTarget;
       var tweetsList = document.createElement('ul');
       var html = '';
@@ -331,21 +332,57 @@
       // clear the element
       element.innerHTML = '';
 
-      while (n < x) {
-        html += '<li>' + tweets[n] + '</li>';
-        n++;
+      for (i = 0; i < l; i++) {
+        var tweet = document.createElement('li');
+        tweet.innerHTML = tweets[i];
+        var tweetTextEl = tweet.querySelector('.tweet');
+
+        // if images are set to be shown,
+        // remove their `pic.twitter.com` link
+        if (this.images) {
+          var mediaLink = getTweetMediaLink(tweetTextEl.textContent);
+
+          // is there a media link?
+          if (mediaLink) {
+            var mediaDiv = tweet.querySelector('.media');
+
+            // for some reason, some tweets still with 'show images'
+            // set to true, does not show theirs image, so we let
+            // them untouched
+            if (mediaDiv) {
+              // wrap the image in an an anchor (<a>)
+              // to take the user to the picture
+              var mediaAnchor = document.createElement('a');
+
+              tweet.replaceChild(mediaAnchor, mediaDiv);
+              mediaAnchor.href = "https://" + mediaLink;
+              mediaAnchor.appendChild(mediaDiv);
+
+              // remove the `pic.twitter.com` from the tweet
+              tweetTextEl.lastChild.remove();
+            }
+          }
+        }
+
+        tweetsList.appendChild(tweet);
       }
-      tweetsList.innerHTML = html;
 
       // fix tweets images
       var profilePictures = tweetsList.querySelectorAll('[data-src-1x]');
-      for (var i = 0; i < profilePictures.length; i++) {
+      for (i = 0; i < profilePictures.length; i++) {
         profilePictures[i].setAttribute('src', profilePictures[i].getAttribute('data-src-1x'))
       }
 
       element.appendChild(tweetsList);
 
       setLoading.call(this, false);
+    }
+
+    function getTweetMediaLink(tweetStr) {
+      var match = tweetStr.match(/(pic.twitter.com\/\S*)$/);
+      if (match)
+        return match[1];
+      return null;
     }
 
     // helper methods

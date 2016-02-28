@@ -126,7 +126,7 @@ form input {
 
 #styled::shadow .interact a {
   box-sizing: border-box;
-  
+
   padding: 0 5px;
   margin-left: 0;
   width: 33.33333333333%;
@@ -134,7 +134,7 @@ form input {
   opacity: 1;
   background-color: #555;
   border-right: 1px solid #666;
-  
+
   text-align: center;
 
   -webkit-transition: background-color .1s linear;
@@ -168,4 +168,8 @@ form input {
 
 #styled::shadow .interact a.twitter_fav_icon::before {
   content: "\22C6";
+}
+
+#styled::shadow img {
+  border-radius: 5px;
 }
