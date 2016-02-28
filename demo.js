@@ -12,15 +12,15 @@
     //grab the entire query string
     var query = document.location.search.replace('?', '');
     if (!query) return;
-    
+
     //extract each field/value pair
     query = query.split('&');
-    
+
     //run through each pair
     for (var i = 0; i < query.length; i++) {
       //split up the field/value pair into an array
       var field = query[i].split("=");
-      
+
       //target the field and assign its value
       var input = document.querySelector("input[name='" + field[0] + "']");
       if (input.type === 'checkbox')
@@ -38,7 +38,7 @@
     var query = '';
 
     var formFields = document.querySelectorAll('input[name]') ;
-    
+
     //run through each pair
     for (var i = 0; i < formFields.length; i++) {
       var input = formFields[i];
@@ -63,14 +63,11 @@
     var value = input.value;
 
     if (input.type === 'checkbox') {
-      if (!input.checked)
-        dynamicTwitterPost.removeAttribute(var2attr(input.name));
-      else
-        dynamicTwitterPost.setAttribute(var2attr(input.name), input.checked);
+        dynamicTwitterPost[input.name] = input.checked;
     } else {
-      dynamicTwitterPost.setAttribute(var2attr(input.name), input.value);
+      dynamicTwitterPost[input.name] = input.value;
     }
-    
+
     dynamicTwitterPost.fetchTweets();
 
     updateUrl();
@@ -81,17 +78,18 @@
   fillFormFromQueryString();
 
   window.addEventListener('HTMLImportsLoaded', function(e) {
-    dynamicTwitterPost.setWidgetId(dynamicTweetConfig.widgetId.value);
-    dynamicTwitterPost.setMaxTweets(dynamicTweetConfig.maxTweets.value);
-    dynamicTwitterPost.setHideLinks(dynamicTweetConfig.noLink.checked);
-    dynamicTwitterPost.setHideUser(dynamicTweetConfig.hideUser.checked);
-    dynamicTwitterPost.setHideTime(dynamicTweetConfig.hideTime.checked);
-    dynamicTwitterPost.setHideRetweets(dynamicTweetConfig.hideRetweets.checked);
-    dynamicTwitterPost.setHideInteraction(dynamicTweetConfig.hideInteraction.checked);
-    dynamicTwitterPost.setShowImages(dynamicTweetConfig.images.checked);
-    dynamicTwitterPost.setOpenLinksLocally(dynamicTweetConfig.openLinksLocally.checked);
-    dynamicTwitterPost.setLanguage(dynamicTweetConfig.lang.value);
-    dynamicTwitterPost.setHidePermalink(dynamicTweetConfig.noPermalink.checked);
+    dynamicTwitterPost.widgetId = dynamicTweetConfig.widgetId.value;
+    dynamicTwitterPost.maxTweets = dynamicTweetConfig.maxTweets.value;
+    dynamicTwitterPost.noPermalinks = dynamicTweetConfig.noLink.checked;
+    dynamicTwitterPost.hideUser = dynamicTweetConfig.hideUser.checked;
+    dynamicTwitterPost.hideTime = dynamicTweetConfig.hideTime.checked;
+    dynamicTwitterPost.hideRetweets = dynamicTweetConfig.hideRetweets.checked;
+    dynamicTwitterPost.hideInteraction = dynamicTweetConfig.hideInteraction.checked;
+    dynamicTwitterPost.images = dynamicTweetConfig.images.checked;
+    dynamicTwitterPost.openLinksLocally = dynamicTweetConfig.openLinksLocally.checked;
+    dynamicTwitterPost.lang = dynamicTweetConfig.lang.value;
+    dynamicTwitterPost.noPermalink = dynamicTweetConfig.noPermalink.checked;
+
     dynamicTwitterPost.fetchTweets();
 
     updateDynamicTweetCode();

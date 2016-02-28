@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>&lt;twitter-post&gt;</title>
@@ -13,6 +14,7 @@
 
   <link rel="import" href="twitter-post.html">
 </head>
+
 <body>
   <h1><a href="https://github.com/danguilherme/twitter-post/tree/vanilla">&lt;twitter-post&gt;</a></h1>
 
@@ -20,34 +22,34 @@
   <form name="dynamicTweetConfig">
     <label for="widgetId">Widget ID <a href="https://github.com/danguilherme/twitter-post/tree/master#how-to-create-a-widget-id" target="_BLANK">(?)</a>:</label>
     <input type="text" name="widgetId" id="widgetId" value="347099293930377217">
-    
+
     <label for="maxTweets">Number of tweets:</label>
     <input type="range" name="maxTweets" id="maxTweets" min="1" max="20" value="3">
-    
+
     <label for="noLink">Remove anchors:</label>
     <input type="checkbox" name="noLink" id="noLink">
-    
+
     <label for="hideUser">Hide user:</label>
     <input type="checkbox" name="hideUser" id="hideUser">
-    
+
     <label for="hideTime">Hide time:</label>
     <input type="checkbox" name="hideTime" id="hideTime">
-    
+
     <label for="hideRetweets">Hide retweets:</label>
     <input type="checkbox" name="hideRetweets" id="hideRetweets">
-    
-    <label for="hideInteraction">Hide interaction (reply, retweet, favorite):</label>
+
+    <label for="hideInteraction">Hide interaction (reply, retweet, like):</label>
     <input type="checkbox" name="hideInteraction" id="hideInteraction">
-    
+
     <label for="images">Show media:</label>
     <input type="checkbox" name="images" id="images">
-    
+
     <label for="openLinksLocally">Open links in current tab:</label>
     <input type="checkbox" name="openLinksLocally" id="openLinksLocally">
-    
+
     <label for="lang">Language (used only on tweet date and time):</label>
     <input type="text" name="lang" id="lang">
-    
+
     <label for="noPermalink">Remove permalink:</label>
     <input type="checkbox" name="noPermalink" id="noPermalink">
   </form>
@@ -57,7 +59,7 @@
   <h2><a href="https://twitter.com/danguilherme">@danguilherme</a></h2>
   <pre><code>&lt;twitter-post id="danguilherme" widget-id="432641412975185920" lang="pt" max-tweets="5"&gt;&lt;/twitter-post&gt;</code></pre>
   <twitter-post id="danguilherme" widget-id="432641412975185920" lang="pt" max-tweets="5"></twitter-post>
-  
+
   <h3>Plain tweet content</h3>
   <pre><code>&lt;twitter-post id=&quot;danguilherme-plain&quot; widget-id=&quot;432641412975185920&quot; max-tweets=&quot;1&quot; no-link hide-user hide-time hide-retweets hide-interaction no-permalink&gt;&lt;/twitter-post&gt;</code></pre>
   <twitter-post id="danguilherme-plain" widget-id="432641412975185920" max-tweets="1" no-link hide-user hide-time hide-retweets hide-interaction no-permalink></twitter-post>
@@ -76,4 +78,5 @@
 
   <script src="demo.js"></script>
 </body>
+
 </html>

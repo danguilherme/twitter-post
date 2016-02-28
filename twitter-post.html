@@ -5,7 +5,6 @@
     :host {
       display: block;
       max-width: 100%;
-
       border: 1px solid #e8e8e8;
       border-radius: 5px;
     }
@@ -17,18 +16,14 @@
     ul {
       margin: 0;
       padding: 0;
-
       list-style: none;
-
       border-radius: 5px;
     }
 
     li {
       position: relative;
       padding: 12px;
-
       overflow: hidden;
-
       border: solid #e8e8e8;
       border-width: 1px 0 0;
     }
@@ -68,9 +63,7 @@
       font-weight: bold;
     }
 
-    .user span[data-scribe="element:screen-name"] {
-
-    }
+    .user span[data-scribe="element:screen-name"] {}
 
     .tweet {
       margin: 0;
@@ -110,7 +103,6 @@
     .interact a {
       display: inline-block;
       margin-left: 5px;
-
       opacity: 0;
     }
 
@@ -134,26 +126,137 @@
 </template>
 
 <script>
-(function(window, document, undefined) {
+  (function(window, document, undefined) {
     var thatDoc = document;
-    var thisDoc =  (thatDoc._currentScript || thatDoc.currentScript).ownerDocument;
+    var thisDoc = (thatDoc._currentScript || thatDoc.currentScript).ownerDocument;
+
+    var DEFAULT_MAX_TWEETS = 20;
+    var DEFAULT_LANGUAGE = 'en';
 
     var template = thisDoc.querySelector('template').content;
 
     // Creates an object based in the HTML Element prototype
     var TwitterPostElementProto = Object.create(HTMLElement.prototype);
-    // Registers all attributes with theirs default values
-    TwitterPostElementProto.widgetId = null;
-    TwitterPostElementProto.maxTweets = 20;
-    TwitterPostElementProto.noLink = false;
-    TwitterPostElementProto.hideUser = false;
-    TwitterPostElementProto.hideTime = false;
-    TwitterPostElementProto.hideRetweets = false;
-    TwitterPostElementProto.hideInteraction = false;
-    TwitterPostElementProto.images = false;
-    TwitterPostElementProto.openLinksLocally = false;
-    TwitterPostElementProto.language = 'en';
-    TwitterPostElementProto.noPermalinks = false;
+    // Registers all attributes (element properties)
+    Object.defineProperties(TwitterPostElementProto, {
+      'widgetId': {
+        get: function() {
+          return this.getAttribute('widget-id');
+        },
+        set: function(val) {
+          if (!val) val = '';
+          this.setAttribute('widget-id', val);
+        }
+      },
+      'maxTweets': {
+        get: function() {
+          return Number(this.getAttribute('max-tweets')) || DEFAULT_MAX_TWEETS;
+        },
+        set: function(val) {
+          var n = Number(val);
+          if (window.isNaN(n) ||
+            n < 1 || n > 20)
+            throw new Error("Maximum tweets property must be a number between 1 and 20.");
+          this.setAttribute('max-tweets', n);
+        }
+      },
+      'noLink': {
+        get: function() {
+          return this.hasAttribute('no-link');
+        },
+        set: function(val) {
+          if (val === true)
+            this.setAttribute('no-link', '');
+          else
+            this.removeAttribute('no-link');
+        }
+      },
+      'hideUser': {
+        get: function() {
+          return this.hasAttribute('hide-user');
+        },
+        set: function(val) {
+          if (val === true)
+            this.setAttribute('hide-user', '');
+          else
+            this.removeAttribute('hide-user');
+        }
+      },
+      'hideTime': {
+        get: function() {
+          return this.hasAttribute('hide-time');
+        },
+        set: function(val) {
+          if (val === true)
+            this.setAttribute('hide-time', '');
+          else
+            this.removeAttribute('hide-time');
+        }
+      },
+      'hideRetweets': {
+        get: function() {
+          return this.hasAttribute('hide-retweets');
+        },
+        set: function(val) {
+          if (val === true)
+            this.setAttribute('hide-retweets', '');
+          else
+            this.removeAttribute('hide-retweets');
+        }
+      },
+      'hideInteraction': {
+        get: function() {
+          return this.hasAttribute('hide-interaction');
+        },
+        set: function(val) {
+          if (val === true)
+            this.setAttribute('hide-interaction', '');
+          else
+            this.removeAttribute('hide-interaction');
+        }
+      },
+      'images': {
+        get: function() {
+          return this.hasAttribute('images');
+        },
+        set: function(val) {
+          if (val === true)
+            this.setAttribute('images', '');
+          else
+            this.removeAttribute('images');
+        }
+      },
+      'openLinksLocally': {
+        get: function() {
+          return this.hasAttribute('open-links-locally');
+        },
+        set: function(val) {
+          if (val === true)
+            this.setAttribute('open-links-locally', '');
+          else
+            this.removeAttribute('open-links-locally');
+        }
+      },
+      'lang': {
+        get: function() {
+          return this.getAttribute('lang') || DEFAULT_LANGUAGE;
+        },
+        set: function(val) {
+          this.setAttribute('lang', val);
+        }
+      },
+      'noPermalinks': {
+        get: function() {
+          return this.hasAttribute('no-permalink');
+        },
+        set: function(val) {
+          if (val === true)
+            this.setAttribute('no-permalink', '');
+          else
+            this.removeAttribute('no-permalink');
+        }
+      }
+    });
 
     // Fires when an instance of the element is created
     TwitterPostElementProto.createdCallback = function() {
@@ -164,156 +267,19 @@
       shadowRoot.appendChild(clone);
 
       this.progress = shadowRoot.querySelector('progress');
-      this.target = shadowRoot.querySelector('div');
-
-      // Checks if attributes already exist and modify them
-      // widget-id
-      if (this.hasAttribute('widget-id'))
-        this.setWidgetId(this.getAttribute('widget-id'));
-
-      // max-tweets
-      if (this.hasAttribute('max-tweets'))
-        this.setMaxTweets(this.getAttribute('max-tweets'));
-      else
-        this.setMaxTweets(this.maxTweets);
-
-      // no-link
-      this.setHideLinks(this.hasAttribute('no-link'));
-      // hide-user
-      this.setHideUser(this.hasAttribute('hide-user'));
-      // hide-time
-      this.setHideTime(this.hasAttribute('hide-time'));
-      // hide-retweets
-      this.setHideRetweets(this.hasAttribute('hide-retweets'));
-      // no-interaction
-      this.setHideInteraction(this.hasAttribute('hide-interaction'));
-      // images
-      this.setShowImages(this.hasAttribute('images'));
-      // open-links-locally
-      this.setOpenLinksLocally(this.hasAttribute('open-links-locally'));
-      // lang
-      if (this.hasAttribute('lang'))
-        this.setLanguage(this.getAttribute('lang'));
-      else
-        this.setLanguage(this.language);
-      // no-permalink
-      this.setHidePermalink(this.hasAttribute('no-permalink'));
+      this.contentTarget = shadowRoot.querySelector('div');
 
       if (!!this.widgetId)
         this.fetchTweets();
     };
 
     // Fires when an attribute was added, removed, or updated
-    TwitterPostElementProto.attributeChangedCallback = function(attr, oldVal, newVal) {
-      if (oldVal == newVal) return;
-
-      switch(attr) {
-        case 'widget-id': this.setWidgetId(newVal); break;
-        case 'max-tweets': this.setMaxTweets(newVal); break;
-        case 'no-link': this.setHideLinks(this.hasAttribute('no-link')); break;
-        case 'hide-user': this.setHideUser(this.hasAttribute('hide-user')); break;
-        case 'hide-time': this.setHideTime(this.hasAttribute('hide-time')); break;
-        case 'hide-retweets': this.setHideRetweets(this.hasAttribute('hide-retweets')); break;
-        case 'hide-interaction': this.setHideInteraction(this.hasAttribute('hide-interaction')); break;
-        case 'images': this.setShowImages(this.hasAttribute('images')); break;
-        case 'open-links-locally': this.setOpenLinksLocally(this.hasAttribute('open-links-locally')); break;
-        case 'lang': this.setLanguage(newVal); break;
-        case 'no-permalink': this.setHidePermalink(this.hasAttribute('no-permalink')); break;
-      }
-    };
-
-    // Create setters for all attributes
-    TwitterPostElementProto.setWidgetId = function(val) {
-      if (!val) val = '';
-      this.widgetId = val;
-      this.setAttribute('widget-id', this.widgetId);
-    };
-
-    TwitterPostElementProto.setMaxTweets = function(val) {
-      var n = Number(val);
-      if (window.isNaN(n) ||
-        n < 1 || n > 20)
-        throw new Error("Maximum tweets property must be a number between 1 and 20.");
-      this.maxTweets = n;
-      this.setAttribute('max-tweets', this.maxTweets);
-    };
-
-    TwitterPostElementProto.setHideLinks = function(val) {
-      if (val === true) {
-        this.setAttribute('no-link', '');
-      } else {
-        this.removeAttribute('no-link');
-      }
-      this.noLink = this.hasAttribute('no-link');
-    };
-
-    TwitterPostElementProto.setHideUser = function(val) {
-      if (val === true) {
-        this.setAttribute('hide-user', '');
-      } else {
-        this.removeAttribute('hide-user');
-      }
-      this.hideUser = this.hasAttribute('hide-user');
-    };
-
-    TwitterPostElementProto.setHideTime = function(val) {
-      if (val === true) {
-        this.setAttribute('hide-time', '');
-      } else {
-        this.removeAttribute('hide-time');
-      }
-      this.hideTime = this.hasAttribute('hide-time');
-    };
-
-    TwitterPostElementProto.setHideRetweets = function(val) {
-      if (val === true) {
-        this.setAttribute('hide-retweets', '');
-      } else {
-        this.removeAttribute('hide-retweets');
-      }
-      this.hideRetweets = this.hasAttribute('hide-retweets');
-    };
-
-    TwitterPostElementProto.setHideInteraction = function(val) {
-      if (val === true) {
-        this.setAttribute('hide-interaction', '');
-      } else {
-        this.removeAttribute('hide-interaction');
-      }
-      this.hideInteraction = this.hasAttribute('hide-interaction');
-    };
-
-    TwitterPostElementProto.setShowImages = function(val) {
-      if (val === true) {
-        this.setAttribute('images', '');
-      } else {
-        this.removeAttribute('images');
-      }
-      this.images = this.hasAttribute('images');
-    };
-
-    TwitterPostElementProto.setOpenLinksLocally = function(val) {
-      if (val === true) {
-        this.setAttribute('open-links-locally', '');
-      } else {
-        this.removeAttribute('open-links-locally');
-      }
-      this.openLinksLocally = this.hasAttribute('open-links-locally');
-    };
-
-    TwitterPostElementProto.setLanguage = function(val) {
-      this.language = val;
-      this.setAttribute('lang', this.language);
-    };
-
-    TwitterPostElementProto.setHidePermalink = function(val) {
-      if (val === true) {
-        this.setAttribute('no-permalink', '');
-      } else {
-        this.removeAttribute('no-permalink');
-      }
-      this.noPermalink = this.hasAttribute('no-permalink');
-    };
+    // TwitterPostElementProto.attributeChangedCallback = function(attr, oldVal, newVal) {
+    //   console.debug("attr set: " + attr2var(attr), oldVal, '=>', newVal);
+    //   if (oldVal == newVal) return;
+    //
+    //   this[attr2var(attr)] = newVal;
+    // };
 
     // public methods
     TwitterPostElementProto.fetchTweets = function() {
@@ -333,7 +299,7 @@
         showInteraction: !this.hideInteraction,
         showImages: this.images,
         linksInNewWindow: !this.openLinksLocally,
-        lang: this.language,
+        lang: this.lang,
         showPermalinks: !this.noPermalink,
         customCallback: handleTweets.bind(this)
       });
@@ -348,21 +314,24 @@
     function setLoading(isLoading) {
       if (isLoading) {
         this.progress.style.display = "block";
-        this.target.style.display = "none";
+        this.contentTarget.style.display = "none";
       } else {
         this.progress.style.display = "none";
-        this.target.style.display = "block";
+        this.contentTarget.style.display = "block";
       }
     }
 
-    function handleTweets(tweets){
+    function handleTweets(tweets) {
       var x = tweets.length;
       var n = 0;
-      var element = this.target;
+      var element = this.contentTarget;
       var tweetsList = document.createElement('ul');
       var html = '';
 
-      while(n < x) {
+      // clear the element
+      element.innerHTML = '';
+
+      while (n < x) {
         html += '<li>' + tweets[n] + '</li>';
         n++;
       }
@@ -375,7 +344,7 @@
       }
 
       element.appendChild(tweetsList);
-      
+
       setLoading.call(this, false);
     }
 
@@ -384,22 +353,22 @@
       var SEPARATOR_REGEXP = /\-+(.)/g;
 
       return attributeName.
-        replace(SEPARATOR_REGEXP, function (_, letter, offset) {
-          return offset ? letter.toUpperCase() : letter;
-        });
+      replace(SEPARATOR_REGEXP, function(_, letter, offset) {
+        return offset ? letter.toUpperCase() : letter;
+      });
     }
 
     function var2attr(attributeName) {
       var UPPER_CASE_LETTERS_REGEXP = /([A-Z])/g;
 
       return attributeName.
-        replace(UPPER_CASE_LETTERS_REGEXP, function (_, letter, offset) {
-          return offset ? '-' + letter.toLowerCase() : letter;
-        });
+      replace(UPPER_CASE_LETTERS_REGEXP, function(_, letter, offset) {
+        return offset ? '-' + letter.toLowerCase() : letter;
+      });
     }
 
     function capitalizeFirstLetter(word) {
       return word.charAt(0).toUpperCase() + word.substring(1);
     }
-})(window, document);
+  })(window, document);
 </script>
