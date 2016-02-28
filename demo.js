@@ -90,6 +90,10 @@
     dynamicTwitterPost.lang = dynamicTweetConfig.lang.value;
     dynamicTwitterPost.noPermalink = dynamicTweetConfig.noPermalink.checked;
 
+    dynamicTwitterPost.addEventListener('tweetrender', function() {
+      console.log('Dynamic tweets rendered');
+    });
+
     dynamicTwitterPost.fetchTweets();
 
     updateDynamicTweetCode();

@@ -376,6 +376,8 @@
       element.appendChild(tweetsList);
 
       setLoading.call(this, false);
+
+      this.dispatchEvent(new Event('tweetrender'));
     }
 
     function getTweetMediaLink(tweetStr) {
