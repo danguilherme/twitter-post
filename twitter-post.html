@@ -379,7 +379,7 @@
     }
 
     function getTweetMediaLink(tweetStr) {
-      var match = tweetStr.match(/(pic.twitter.com\/\S*)$/);
+      var match = tweetStr.match(/(pic\.twitter\.com\/\S*)$/);
       if (match)
         return match[1];
       return null;
