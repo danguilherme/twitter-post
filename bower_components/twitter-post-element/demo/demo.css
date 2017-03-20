@@ -3,13 +3,29 @@
 }
 
 html {
-  font-family: Calibri,sans-serif;
+  font-family: Calibri, sans-serif;
 }
 
 body {
   max-width: 800px;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 0 1em;
+  background-color: #1da1f2;
+}
+
+.twitter-logo {
+  position: fixed;
+  top: -30px;
+  left: -12px;
+  width: 300px;
+  z-index: -1;
+  opacity: .5;
+}
+
+.body-wrapper {
+  padding: 1em;
+  background: #e9f6fe;
+  box-shadow: 0px 0px 50px 30px #e9f6fe;
 }
 
 h1,
@@ -19,15 +35,19 @@ h3 {
 }
 
 h1 {
-  border-bottom: 5px solid #f4f4f4;
+  border-bottom: 5px solid #1da1f2;
+}
+
+h1.main-title {
+  margin-top: 0;
 }
 
 h2 {
-  border-bottom: 3px solid #666;
+  border-bottom: 3px solid #c4e6fc;
 }
 
 h3 {
-  border-bottom: 1px dotted #333;
+  border-bottom: 1px dotted #c4e6fc;
 }
 
 a {
@@ -47,9 +67,10 @@ pre {
   padding: 2em 1em;
   max-width: 100%;
   overflow: auto;
-  background-color: #f4f4f4;
+  background-color: #8ccff8;
   border-radius: 10px;
   white-space: pre-wrap;
+  border: #0c81c9 1px solid;
 }
 
 form {
@@ -61,7 +82,6 @@ form label {
   width: 60%;
   display: inline-block;
   text-align: right;
-
   margin-top: .5em;
 }
 
@@ -74,12 +94,9 @@ form input {
 #styled {
   color: #fff;
   background-color: #333;
-
   border: 2px solid black;
-
   -webkit-box-shadow: inset 0 0 10px black;
   box-shadow: inset 0 0 10px black;
-
   cursor: default;
 }
 
@@ -107,7 +124,6 @@ form input {
 #styled::shadow .tweet a {
   font-weight: bold;
   word-break: break-all;
-
   -webkit-transition: text-shadow .3s linear;
   -o-transition: text-shadow .3s linear;
   transition: text-shadow .3s linear;
@@ -126,17 +142,13 @@ form input {
 
 #styled::shadow .interact a {
   box-sizing: border-box;
-  
   padding: 0 5px;
   margin-left: 0;
   width: 33.33333333333%;
-
   opacity: 1;
   background-color: #555;
   border-right: 1px solid #666;
-  
   text-align: center;
-
   -webkit-transition: background-color .1s linear;
   -o-transition: background-color .1s linear;
   transition: background-color .1s linear;
@@ -153,7 +165,6 @@ form input {
 
 #styled::shadow .interact a::before {
   content: '';
-
   display: inline-block;
   margin-right: 2px;
 }
@@ -168,4 +179,8 @@ form input {
 
 #styled::shadow .interact a.twitter_fav_icon::before {
   content: "\22C6";
+}
+
+#styled::shadow img {
+  border-radius: 5px;
 }

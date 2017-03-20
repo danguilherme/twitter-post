@@ -1,17 +1,4 @@
 /**
- * ### HOW TO CREATE A VALID ID TO USE: ###
- * Go to www.twitter.com and sign in as normal, go to your settings page.
- * Go to "Widgets" on the left hand side.
- * Create a new widget for what you need eg "user time line" or "search" etc.
- * Feel free to check "exclude replies" if you don't want replies in results.
- * Now go back to settings page, and then go back to widgets page and
- * you should see the widget you just created. Click edit.
- * Look at the URL in your web browser, you will see a long number like this:
- * 345735908357048478
- * Use this as your ID below instead!
- */
-
-/**
  * How to use TwitterFetcher's fetch function:
  *
  * @function fetch(object) Fetches the Twitter content according to
@@ -20,13 +7,30 @@
  * @param object {Object} An object containing case sensitive key-value pairs
  *     of properties below.
  *
- * You may specify at minimum the following two required properties:
+ * You may specify at minimum the following required properties:
  *
- * @param object.id {string} The ID of the Twitter widget you wish
- *     to grab data from (see above for how to generate this number).
+ * @param object.id {string} DEPRECATED due to Twitter Change. Only use if
+ *     you have an ID from prior to change. The ID of the Twitter widget you
+ *     wish to grab data from (see above for how to generate this number).
  * @param object.domId {string} The ID of the DOM element you want
  *     to write results to.
  *
+ * 
+ * Along with at least one of these:
+ * 
+ * @param object.profile {Object} An object containing a refernece to the
+ *     screen name we wish to grab tweets for. Should be like this:
+ *     {"screenName": 'jason_mayes'}
+ * 
+ * @param object.likes {Object} An object containing a refernece to the
+ *     screen name we wish to grab likes for. Should be like this:
+ *     {"screenName": 'jason_mayes'}
+ * 
+ * @param object.list {Object} An object containing a refernece to the
+ *     screen name we wish to grab likes for. Should be like this:
+ *     {"listSlug": 'inspiration', "screenName": 'jason_mayes'}
+ *
+ * 
  * You may also specify one or more of the following optional properties
  *     if you desire:
  *
@@ -59,7 +63,57 @@
  *     is "en" (English).
  * @param object.showPermalinks [boolean] Set false if you don't want time
  *     to be permalinked.
+ * @param object.dataOnly [boolean] Set true if you want the argument passed
+ *     to the customCallback to be an Array of Objects containing data
+ *     instead of an Array of HTML Strings
  */
+
+
+/**************************************************************************
+ * NEW: These first examples no longer need the Widget ID to work.
+ *************************************************************************/
+var configList = {
+  "list": {"listSlug": 'inspiration', "screenName": 'jason_mayes'},
+  "domId": 'exampleList',
+  "maxTweets": 5,
+  "enableLinks": true, 
+  "showUser": true,
+  "showTime": true,
+  "showImages": true,
+  "lang": 'en'
+};
+twitterFetcher.fetch(configList);
+
+
+var configProfile = {
+  "profile": {"screenName": 'jason_mayes'},
+  "domId": 'exampleProfile',
+  "maxTweets": 3,
+  "enableLinks": true, 
+  "showUser": true,
+  "showTime": true,
+  "showImages": true,
+  "lang": 'en'
+};
+twitterFetcher.fetch(configProfile);
+
+
+var configLikes = {
+  "likes": {"screenName": 'jason_mayes'},
+  "domId": 'exampleLikes',
+  "maxTweets": 3,
+  "enableLinks": true, 
+  "showUser": true,
+  "showTime": true,
+  "showImages": true,
+  "lang": 'en'
+};
+twitterFetcher.fetch(configLikes);
+
+
+/**************************************************************************
+ * NOTE: Only use the below examples if you still have a widget ID to use.
+ *************************************************************************/
 
 // ##### Simple example 1 #####
 // A simple example to get my latest tweet and write to a HTML element with
@@ -204,6 +258,7 @@ twitterFetcher.fetch(config6);
 // ##### CommonJS example (e.g. Browserify) #####
 // The result of this example is identical to example 1, but it's meant for
 // usage through Browserify or compatible bundler.
+/*
 var fetcher = require('twitter-fetcher'); //debowerify may be needed
 var config7 = {
   "id": '345170787868762112',
@@ -212,11 +267,12 @@ var config7 = {
   "enableLinks": true
 };
 fetcher.fetch(config7);
-
+*/
 
 // ##### AMD example (e.g. Require.js) #####
 // The result of this example is identical to example 1, but it's meant for
 // usage with Require.js or similar loader.
+/*
 require(['twitter-fetcher'], function (fetcher) {
   var config7 = {
     "id": '345170787868762112',
@@ -226,3 +282,33 @@ require(['twitter-fetcher'], function (fetcher) {
   };
   fetcher.fetch(config7);
 });
+*/
+
+
+// ##### Advanced example 3 #####
+// An advance example to get data in Objects, instead of HTML Strings,
+// to populate a template for example.
+
+var config8 = {
+  "id": '502160051226681344',
+  "dataOnly": true,
+  "customCallback": populateTpl
+};
+
+twitterFetcher.fetch(config8);
+
+function populateTpl(tweets){
+  var element = document.getElementById('example8');
+  var html = '<ul>';
+  for (var i = 0, lgth = tweets.length; i < lgth ; i++) {
+    var tweetObject = tweets[i];
+    html += '<li>'
+      + (tweetObject.image ? '<div class="tweet-img"><img src="'+tweetObject.image+'" /></div>' : '')
+      + '<p class="tweet-content">' + tweetObject.tweet + '</p>'
+      + '<p class="tweet-infos">Posted on the ' + tweetObject.time + ', by ' + tweetObject.author + '</p>'
+      + '<p class="tweet-link"><a href="' + tweetObject.permalinkURL + '">Link</a></p>'
+    + '</li>';
+  }
+  html += '</ul>';
+  element.innerHTML = html;
+}

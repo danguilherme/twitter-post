@@ -20,14 +20,14 @@
     "tests"
   ],
   "dependencies": {
-    "twitter-fetcher": "~13.0.0",
+    "twitter-fetcher": "~16.0.3",
     "webcomponentsjs": "~0.7.1"
   },
-  "_release": "8b23b81a22",
+  "_release": "df526e3bb1",
   "_resolution": {
     "type": "branch",
     "branch": "vanilla",
-    "commit": "8b23b81a22ed1e6926d4cafbf56100efa68cb006"
+    "commit": "df526e3bb17534a75f66e063a1019b1a7527fc2e"
   },
   "_source": "https://github.com/danguilherme/twitter-post.git",
   "_target": "vanilla",

@@ -1,7 +1,7 @@
 {
   "name": "twitter-fetcher",
   "description": "Fetch your Twitter pots without using OAUTH or the new 1.1 API. All in JavaScript.",
-  "version": "13.0.0",
+  "version": "16.0.3",
   "author": {
     "name": "Jason Mayes"
   },
@@ -22,13 +22,13 @@
     "Widget"
   ],
   "homepage": "https://github.com/jasonmayes/Twitter-Post-Fetcher",
-  "_release": "13.0.0",
+  "_release": "16.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "13.0.0",
-    "commit": "9402c1d7fb8954bec405639ce4beb4593ddce889"
+    "tag": "16.0.3",
+    "commit": "a4ddfc814ac6613d7e2e7c1037110b4d066cb442"
   },
-  "_source": "git://github.com/jasonmayes/Twitter-Post-Fetcher.git",
-  "_target": "~13.0.0",
+  "_source": "https://github.com/jasonmayes/Twitter-Post-Fetcher.git",
+  "_target": "~16.0.3",
   "_originalSource": "twitter-fetcher"
 }
