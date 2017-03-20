@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>&lt;twitter-post&gt;</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Imports polyfill -->
+  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+
+  <link rel="stylesheet" href="demo.css">
+
+  <link rel="import" href="../twitter-post.html">
+</head>
+
+<body>
+  <object type="image/svg+xml" data="twitter-white.svg" class="twitter-logo">Twitter Logo</object>
+
+  <div class="body-wrapper">
+    <h1 class="main-title"><a href="https://github.com/danguilherme/twitter-post/tree/vanilla">&lt;twitter-post&gt;</a></h1>
+
+    <h2>Dynamic</h2>
+    <form name="dynamicTweetConfig">
+      <label for="widgetId">Widget ID <a href="https://github.com/danguilherme/twitter-post/tree/master#how-to-create-a-widget-id" target="_BLANK">(?)</a>:</label>
+      <input type="text" name="widgetId" id="widgetId" value="347099293930377217">
+
+      <label for="maxTweets">Number of tweets:</label>
+      <input type="range" name="maxTweets" id="maxTweets" min="1" max="20" value="3">
+
+      <label for="noLink">Remove anchors:</label>
+      <input type="checkbox" name="noLink" id="noLink">
+
+      <label for="hideUser">Hide user:</label>
+      <input type="checkbox" name="hideUser" id="hideUser">
+
+      <label for="hideTime">Hide time:</label>
+      <input type="checkbox" name="hideTime" id="hideTime">
+
+      <label for="hideRetweets">Hide retweets:</label>
+      <input type="checkbox" name="hideRetweets" id="hideRetweets">
+
+      <label for="hideInteraction">Hide interaction (reply, retweet, like):</label>
+      <input type="checkbox" name="hideInteraction" id="hideInteraction">
+
+      <label for="images">Show media:</label>
+      <input type="checkbox" name="images" id="images">
+
+      <label for="openLinksLocally">Open links in current tab:</label>
+      <input type="checkbox" name="openLinksLocally" id="openLinksLocally">
+
+      <label for="lang">Language (used only on tweet date and time):</label>
+      <input type="text" name="lang" id="lang">
+
+      <label for="noPermalink">Remove permalink:</label>
+      <input type="checkbox" name="noPermalink" id="noPermalink">
+    </form>
+    <pre><code id="dynamic-twitter-post-code"></code></pre>
+    <twitter-post id="dynamic"></twitter-post>
+
+    <h2><a href="https://twitter.com/danguilherme">@danguilherme</a></h2>
+    <pre><code>&lt;twitter-post id="danguilherme" widget-id="432641412975185920" lang="pt" max-tweets="5"&gt;&lt;/twitter-post&gt;</code></pre>
+    <twitter-post id="danguilherme" widget-id="432641412975185920" lang="pt" max-tweets="5"></twitter-post>
+
+    <h3>Plain tweet content</h3>
+    <pre><code>&lt;twitter-post id=&quot;danguilherme-plain&quot; widget-id=&quot;432641412975185920&quot; max-tweets=&quot;1&quot; no-link hide-user hide-time hide-retweets hide-interaction no-permalink&gt;&lt;/twitter-post&gt;</code></pre>
+    <twitter-post id="danguilherme-plain" widget-id="432641412975185920" max-tweets="1" no-link hide-user hide-time hide-retweets
+      hide-interaction no-permalink></twitter-post>
+
+    <h2><a href="https://twitter.com/Web_Components">@Web_Components</a></h2>
+    <pre><code>&lt;twitter-post id=&quot;Web_Components&quot; widget-id=&quot;602371233813045249&quot; max-tweets=&quot;5&quot;&gt;&lt;/twitter-post&gt;</code></pre>
+    <twitter-post id="Web_Components" widget-id="602371233813045249" max-tweets="5"></twitter-post>
+
+    <h3>Custom Style</h3>
+    <pre><code>&lt;twitter-post id=&quot;styled&quot; widget-id=&quot;602371233813045249&quot; max-tweets=&quot;1&quot;&gt;&lt;/twitter-post&gt;</code></pre>
+    <twitter-post id="styled" widget-id="602371233813045249" max-tweets="1"></twitter-post>
+
+    <h2><a href="https://twitter.com/search?q=%23io15">#javascript</a></h2>
+    <pre><code>&lt;twitter-post id=&quot;javascript&quot; widget-id=&quot;602382946671136768&quot; max-tweets=&quot;10&quot; images&gt;&lt;/twitter-post&gt;</code></pre>
+    <twitter-post id="javascript" widget-id="602382946671136768" max-tweets="10" images></twitter-post>
+  </div>
+
+  <script src="demo.js"></script>
+</body>
+
+</html>
