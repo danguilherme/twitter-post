@@ -21,7 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "twitter-fetcher": "~13.0.0",
+    "twitter-fetcher": "~16.0.3",
     "webcomponentsjs": "~0.7.1"
   }
 }

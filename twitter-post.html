@@ -2,6 +2,10 @@
 
 <template>
   <style>
+    a {
+      color: #0000ee;
+    }
+
     :host {
       display: block;
       max-width: 100%;
@@ -62,6 +66,17 @@
 
     .user span[data-scribe="element:name"] {
       font-weight: bold;
+    }
+
+    .user span[data-scribe="element:verified_badge"] {
+      display: inline-block;
+      padding: 2px;
+      vertical-align: middle;
+      border-radius: 50%;
+      line-height: 8px;
+      font-size: 8px;
+      color: #fff;
+      background-color: #0000ee;
     }
 
     .user span[data-scribe="element:screen-name"] {}
