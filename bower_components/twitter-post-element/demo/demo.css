@@ -55,12 +55,13 @@ a {
   text-decoration: underline;
 }
 
-twitter-post {
-  margin: 0 10%;
-}
-
-twitter-post::shadow a {
-  text-decoration: none;
+code {
+  background: #d6eefd;
+  display: inline-block;
+  padding: 2px .5em;
+  border-radius: 3px;
+  border: 1px solid #0e99ee;
+  margin-bottom: .2em;
 }
 
 pre {
@@ -71,6 +72,15 @@ pre {
   border-radius: 10px;
   white-space: pre-wrap;
   border: #0c81c9 1px solid;
+}
+
+pre code {
+  background: initial;
+  border: initial;
+}
+
+twitter-post::shadow a {
+  text-decoration: none;
 }
 
 form label {
