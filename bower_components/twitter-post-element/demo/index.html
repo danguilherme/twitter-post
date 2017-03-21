@@ -6,6 +6,8 @@
   <title>&lt;twitter-post&gt;</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/kristoferjoseph/flexboxgrid/master/dist/flexboxgrid.min.css">
+
 
   <!-- Imports polyfill -->
   <script src="../../webcomponentsjs/webcomponents.min.js"></script>
@@ -21,43 +23,72 @@
   <div class="body-wrapper">
     <h1 class="main-title"><a href="https://github.com/danguilherme/twitter-post/tree/vanilla">&lt;twitter-post&gt;</a></h1>
 
-    <h2>Dynamic</h2>
-    <form name="dynamicTweetConfig">
-      <label for="widgetId">Widget ID <a href="https://github.com/danguilherme/twitter-post/tree/master#how-to-create-a-widget-id" target="_BLANK">(?)</a>:</label>
-      <input type="text" name="widgetId" id="widgetId" value="347099293930377217">
+    <div id="dynamic-container">
+      <h2>Dynamic</h2>
+      <div class="row">
+        <form name="dynamicTweetConfig" class="col-sm-4">
+          <div>
+            <label for="widgetId">Widget ID <a href="https://github.com/danguilherme/twitter-post/tree/master#how-to-create-a-widget-id" target="_BLANK">(?)</a>:</label>
+            <br>
+            <input type="text" name="widgetId" id="widgetId" value="347099293930377217">
+          </div>
 
-      <label for="maxTweets">Number of tweets:</label>
-      <input type="range" name="maxTweets" id="maxTweets" min="1" max="20" value="3">
+          <div>
+            <label for="maxTweets">Number of tweets:</label><br>
+            <input type="range" name="maxTweets" id="maxTweets" min="1" max="20" value="3">
+          </div>
 
-      <label for="noLink">Remove anchors:</label>
-      <input type="checkbox" name="noLink" id="noLink">
+          <div>
+            <input type="checkbox" name="noLink" id="noLink">
+            <label for="noLink">Remove anchors</label>
+          </div>
 
-      <label for="hideUser">Hide user:</label>
-      <input type="checkbox" name="hideUser" id="hideUser">
+          <div>
+            <input type="checkbox" name="hideUser" id="hideUser">
+            <label for="hideUser">Hide user</label>
+          </div>
 
-      <label for="hideTime">Hide time:</label>
-      <input type="checkbox" name="hideTime" id="hideTime">
+          <div>
+            <input type="checkbox" name="hideTime" id="hideTime">
+            <label for="hideTime">Hide time</label>
+          </div>
 
-      <label for="hideRetweets">Hide retweets:</label>
-      <input type="checkbox" name="hideRetweets" id="hideRetweets">
+          <div>
+            <input type="checkbox" name="hideRetweets" id="hideRetweets">
+            <label for="hideRetweets">Hide retweets</label>
+          </div>
 
-      <label for="hideInteraction">Hide interaction (reply, retweet, like):</label>
-      <input type="checkbox" name="hideInteraction" id="hideInteraction">
+          <div>
+            <input type="checkbox" name="hideInteraction" id="hideInteraction">
+            <label for="hideInteraction">Hide interactions<br><small>(reply, retweet, like)</small></label>
+          </div>
 
-      <label for="images">Show media:</label>
-      <input type="checkbox" name="images" id="images">
+          <div>
+            <input type="checkbox" name="images" id="images">
+            <label for="images">Show media</label>
+          </div>
 
-      <label for="openLinksLocally">Open links in current tab:</label>
-      <input type="checkbox" name="openLinksLocally" id="openLinksLocally">
+          <div>
+            <input type="checkbox" name="openLinksLocally" id="openLinksLocally">
+            <label for="openLinksLocally">Open links in current tab</label>
+          </div>
 
-      <label for="lang">Language (used only on tweet date and time):</label>
-      <input type="text" name="lang" id="lang">
+          <div>
+            <label for="lang">Language<br><small>(used only on tweet date and time)</small>:</label><br>
+            <input type="text" name="lang" id="lang">
+          </div>
 
-      <label for="noPermalink">Remove permalink:</label>
-      <input type="checkbox" name="noPermalink" id="noPermalink">
-    </form>
-    <pre><code id="dynamic-twitter-post-code"></code></pre>
-    <twitter-post id="dynamic"></twitter-post>
+          <div>
+            <input type="checkbox" name="noPermalink" id="noPermalink">
+            <label for="noPermalink">Remove permalink</label>
+          </div>
+        </form>
+        <div class="col-sm-8">
+          <pre><code id="dynamic-twitter-post-code"></code></pre>
+          <twitter-post id="dynamic"></twitter-post>
+        </div>
+      </div>
+    </div>
 
     <h2><a href="https://twitter.com/danguilherme">@danguilherme</a></h2>
     <pre><code>&lt;twitter-post id="danguilherme" widget-id="432641412975185920" lang="pt" max-tweets="5"&gt;&lt;/twitter-post&gt;</code></pre>
